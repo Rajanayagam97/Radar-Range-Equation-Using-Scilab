@@ -66,3 +66,4 @@ The Radar Range Equation is a key relationship used in radar system design to de
     plot(Pm_vals, Rmax_Pm, 'b', 'LineWidth', 2);
 
 ## Output Waveform
+<img width="1919" height="1125" alt="image" src="https://github.com/user-attachments/assets/032ae53f-31ff-4b43-874d-d0512f81022c" />
