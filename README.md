@@ -36,40 +36,48 @@ The Radar Range Equation is a key relationship used in radar system design to de
 
 ## Program
 
-    lambda = 0.03; 
-    sigma = 1;     
+lambda = 0.03;
+sigma = 1;
+const = (4 * %pi)^3;
+Pt_vals = 0.1:0.1:10;
+Gt_const1 = 30;
+Pm_const1 = 1e-13;
 
-    Pt_vals = 0.1:0.1:10;   
-    Gt_const = 35;           
-    Pm_const = 1e-13;        
+Rmax_Pt = ((Pt_vals .* Gt_const1.^2 .* lambda.^2 .* sigma) ./ (const .* Pm_const1)).^(1/4);
+Gt_vals = 1:1:50;
+Pt_const2 = 2;
+Pm_const2 = 1e-13;
 
-    Rmax_Pt = ((Pt_vals .* Gt_const.^2 .* lambda.^2 .* sigma) ./ ((4*%pi)^3 .* Pm_const)).^(1/4);
+Rmax_Gt = ((Pt_const2 .* Gt_vals.^2 .* lambda.^2 .* sigma) ./ (const .* Pm_const2)).^(1/4);
+Pm_vals = logspace(-15, -10, 50);
+Pt_const3 = 2;
+Gt_const3 = 30;
 
-    Gt_vals = 1:1:50;        
-    Pt_const = 2;            
-    Pm_const = 1e-13;
-
-    Rmax_Gt = ((Pt_const .* Gt_vals.^2 .* lambda.^2 .* sigma) ./ ((4*%pi)^3 .* Pm_const)).^(1/4);
-    Pm_vals = logspace(-15, -10, 50); 
-    Pt_const = 2;
-    Gt_const = 35;
-
-    Rmax_Pm = ((Pt_const .* Gt_const.^2 .* lambda.^2 .* sigma) ./ ((4*%pi)^3 .* Pm_vals)).^(1/4);   
-
-    subplot(3,1,1);
-    plot(Pt_vals, Rmax_Pt, 'r', 'LineWidth', 2);
-
-    subplot(3,1,2);
-    plot(Gt_vals, Rmax_Gt, 'g', 'LineWidth', 2);
-
-    subplot(3,1,3);
-    plot(Pm_vals, Rmax_Pm, 'b', 'LineWidth', 2);
+Rmax_Pm = ((Pt_const3 .* Gt_const3.^2 .* lambda.^2 .* sigma) ./ (const .* Pm_vals)).^(1/4);
+subplot(3,1,1);
+plot(Pt_vals, Rmax_Pt, 'r', 'LineWidth', 2);
+xlabel("Transmitted Power Pt (W)");
+ylabel("Max Range R (m)");
+title("Rmax vs Pt");
+subplot(3,1,2);
+plot(Gt_vals, Rmax_Gt, 'g', 'LineWidth', 2);
+xlabel("Antenna Gain Gt");
+ylabel("Max Range R (m)");
+title("Rmax vs Gt");
+subplot(3,1,3);
+plot(Pm_vals, Rmax_Pm, 'b', 'LineWidth', 2);
+set(gca(), "x_scale", "log");
+xlabel("Minimum Detectable Power Pm (W)");
+ylabel("Max Range R (m)");
+title("Rmax vs Pm");
 
 ## Output Waveform
-<img width="1919" height="1125" alt="image" src="https://github.com/user-attachments/assets/032ae53f-31ff-4b43-874d-d0512f81022c" />
+<img width="1616" height="1003" alt="image" src="https://github.com/user-attachments/assets/63b0d852-6c82-498f-852e-550163ff253b" />
+
 
 ## Tabulation
-<img width="749" height="1280" alt="image" src="https://github.com/user-attachments/assets/c563cf52-5e7c-49a4-92b5-77579143abea" />
+![WhatsApp Image 2025-10-28 at 20 54 08_63768797](https://github.com/user-attachments/assets/976b9389-61a9-4620-b0a4-f6235c78761a)
+
 
 ## Result
 Thus, the maximum range of a radar system using the Radar Range Equation is verified through a Python
