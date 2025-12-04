@@ -35,7 +35,7 @@ The Radar Range Equation is a key relationship used in radar system design to de
 4. Plot the following: Pt vs Rmax Gt vs Rmax Pm vs Rmax
 
 ## Program
-
+```
 lambda = 0.03;
 sigma = 1;
 const = (4 * %pi)^3;
@@ -70,7 +70,7 @@ set(gca(), "x_scale", "log");
 xlabel("Minimum Detectable Power Pm (W)");
 ylabel("Max Range R (m)");
 title("Rmax vs Pm");
-
+```
 ## Output Waveform
 <img width="1616" height="1003" alt="image" src="https://github.com/user-attachments/assets/63b0d852-6c82-498f-852e-550163ff253b" />
 
